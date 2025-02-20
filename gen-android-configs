@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 # Generate configurations for various FFMPEG targets
-# TARGETS="armv5te armv7-a armv7-a-neon armv8-a silvermont x86 x86_64"
-TARGETS="x86 x86_64"
+#TARGETS="armv5te armv7-a armv7-a-neon armv8-a silvermont x86 x86_64"
+TARGETS="armv8-a"
 # SYSROOT_BASE="../../prebuilts/ndk/current/platforms/android-21"
 # TOOLS_BASE="../../prebuilts/gcc/linux-x86"
 [ -d "$ANDROID_NDK_HOME" ] || { echo "ANDROID_NDK_HOME is not properly set"; exit 1; }
@@ -16,13 +16,13 @@ BASE_CONFIG="--disable-static --enable-shared --enable-optimizations --disable-d
 # 
 # OPTS_armv7_a_neon="--arch=arm --cpu=armv7-a --build_suffix= --cross-prefix=${TOOLS_BASE}/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi- --enable-cross-compile --sysroot=${SYSROOT_BASE}/arch-arm --target-os=android"
 # 
-# OPTS_armv8_a="--arch=aarch64 --enable-cross-compile --cross-prefix=${TOOLS_BASE}/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android- --sysroot=${SYSROOT_BASE}/arch-arm64 --target-os=android"
+OPTS_armv8_a="--arch=aarch64 --enable-cross-compile --cross-prefix=${TOOLS_BASE}/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android- --sysroot=${SYSROOT_BASE}/arch-arm64 --target-os=android"
 # 
 # OPTS_silvermont="--arch=x86 --cpu=silvermont --build_suffix= --cross-prefix=${TOOLS_BASE}/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android- --enable-cross-compile --sysroot=${SYSROOT_BASE}/arch-x86 --target-os=android --extra-cflags=-m32"
 
-OPTS_x86="--arch=x86 --cpu=i686 --build_suffix= --cross-prefix=${TOOLS_BASE}/i686-linux-android31- --enable-cross-compile --target-os=android --cc=${TOOLS_BASE}/i686-linux-android31-clang --cxx=${TOOLS_BASE}/i686-linux-android31-clang++"
+#OPTS_x86="--arch=x86 --cpu=i686 --build_suffix= --cross-prefix=${TOOLS_BASE}/i686-linux-android31- --enable-cross-compile --target-os=android --cc=${TOOLS_BASE}/i686-linux-android31-clang --cxx=${TOOLS_BASE}/i686-linux-android31-clang++"
 
-OPTS_x86_64="--arch=x86_64 --cpu=generic --build_suffix= --cross-prefix=${TOOLS_BASE}/x86_64-linux-android31- --enable-cross-compile --target-os=android --cc=${TOOLS_BASE}/x86_64-linux-android31-clang --cxx=${TOOLS_BASE}/x86_64-linux-android31-clang++"
+#OPTS_x86_64="--arch=x86_64 --cpu=generic --build_suffix= --cross-prefix=${TOOLS_BASE}/x86_64-linux-android31- --enable-cross-compile --target-os=android --cc=${TOOLS_BASE}/x86_64-linux-android31-clang --cxx=${TOOLS_BASE}/x86_64-linux-android31-clang++"
 
 for TARGET in $TARGETS;do
     echo "Generating configuration for: ${TARGET}"
